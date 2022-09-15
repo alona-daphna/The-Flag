@@ -1,7 +1,3 @@
-# initializes soldier's location at the start of the game
-def place_soldier():
-    pass
-
 # returns a tuple (row, col)
 def get_location_legs():
     pass

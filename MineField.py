@@ -8,3 +8,8 @@ def locate_flag():
 # returns a list of tuples [(row, col)]
 def locate_bombs():
     pass
+
+
+def is_touching_bomb():
+    pass
+
