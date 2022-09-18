@@ -10,6 +10,10 @@ import consts
 
 
 game_running = True
+
+matrix = MineField.initialize_matrix()
+for r in range(len(matrix)):
+    print(matrix[r])
 while running:
     events = pygame.event
     for event in events:
