@@ -8,20 +8,26 @@ screen = pygame.display.set_mode(
         (consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
 
 
-def draw_game(matrix):
+def draw_game():
     coordinates = random_coordinates()
     draw_grass(coordinates)
-    time.sleep(3)
-    present_bomb_screen()
-    draw_grass(coordinates)
-    time.sleep(3)
+    create_player(MineField.get_player_location())
+
+
+def create_player(coordinates, img = "soldier.png"):
+    soldier_img = pygame.image.load(img)
+    soldier_img = pygame.transform.scale(soldier_img, (consts.SOLDIER_WIDTH_PIXEL,
+                                           consts.SOLDIER_HEIGHT_PIXEL))
+    screen.blit(soldier_img, coordinates)
+    pygame.display.flip()
 
 
 def present_bomb_screen():
     screen.fill(consts.BLACK)
     draw_grid()
+    create_player(MineField.get_player_location(), "soldier_night.png")
     draw_bombs(MineField.get_bomb_locations())
-    time.sleep(5)
+    time.sleep(1)
 
 
 def draw_grid():
