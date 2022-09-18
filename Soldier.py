@@ -21,8 +21,8 @@ def update_soldier_location(movement, matrix):
         new_top_left = (location_top_left[0], location_top_left[1]+1)
     
     if is_not_out_of_range(new_top_left):
-        print(matrix)
-        MineField.place_soldier(new_top_left, matrix)
+        MineField.remove_soldier(matrix)
+        MineField.place_soldier(matrix, new_top_left)
 
 
 

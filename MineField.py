@@ -29,11 +29,9 @@ def place_flag():
     r_start, c_start = consts.FLAG_START_PLACE
     for r in range(consts.ROWS-2, consts.ROWS - consts.FLAG_WIDTH - 1, -1):
         for c in range(consts.COLS -1, consts.COLS - consts.FLAG_HEIGHT - 2, -1):
-            print(r,c)
             matrix[r][c] = consts.FLAG
 
 def place_soldier(matrix, location_start=consts.SOLDIER_START_PLACE):
-    print(location_start)
     r_start, c_start = location_start
     for r in range(consts.SOLDIER_HEIGHT):
         for c in range(consts.SOLDIER_WIDTH):
@@ -54,20 +52,24 @@ def is_empty(r, c, length):
     
     return True
 
+# returns a list of tuples [(row, col)]
 def get_bomb_locations():
     indexes = []
     for r in range(consts.ROWS):
         for c in range(consts.COLS):
             if matrix[r][c] == consts.BOMB:
-                indexes.append((r, c))
+                indexes.append((c * consts.HEIGHT_MULTIPLIER, r * consts.WIDTH_MULTIPLIER))
 
-    locations_by_first_index = []            
+    locations_by_first_index = []
     for i in range(0, len(indexes), 3):
         locations_by_first_index.append(indexes[i])
-    
-    return locations_by_first_index
-    
 
-def update_matrix():
-    pass
+    return locations_by_first_index    
+
+def remove_soldier(matrix):
+    for r in range(consts.ROWS):
+        for c in range(consts.COLS):
+            if matrix[r][c] == consts.SOLDIER:
+                matrix[r][c] = consts.EMPTY
+
 

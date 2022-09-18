@@ -30,18 +30,22 @@ while game_running:
 
             
             if event.key == pygame.K_LEFT:
-                Soldier.update_soldier_location(consts.DOWN, matrix)
+                Soldier.update_soldier_location(consts.LEFT, matrix)
+                print_matrix(matrix)
             
             if event.key == pygame.K_RIGHT:
-                Soldier.update_soldier_location(consts.DOWN, matrix)
+                Soldier.update_soldier_location(consts.RIGHT, matrix)
+                print_matrix(matrix)
 
-            if event.key == pygame.K_ENTER:
+            if event.key == pygame.K_RETURN:
                 print()
                 # call to show mine screen
 
         if event.type == pygame.QUIT:
             pygame.quit()
             game_running = False
+
+        print()
         
 
 
