@@ -10,31 +10,38 @@ import consts
 
 pygame.init()
 game_running = True
-
 matrix = MineField.initialize_matrix()
-for r in range(len(matrix)):
-    print(matrix[r])
+def print_matrix(matrix):
+    for r in range(len(matrix)):
+        print(matrix[r])
+    
 while game_running:
+
     events = pygame.event.get()
     for event in events:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                print('UP')
-                # Soldier.update_soldier_location(consts.UP)
-            
+                Soldier.update_soldier_location(consts.UP, matrix)
+                print_matrix(matrix)
+
             if event.key == pygame.K_DOWN:
-                print('DOWN')
-                # Soldier.update_soldier_location(consts.DOWN)
+                Soldier.update_soldier_location(consts.DOWN, matrix)
+                print_matrix(matrix)
+
             
             if event.key == pygame.K_LEFT:
-                print('LEFT')
-                # Soldier.update_soldier_location(consts.LEFT)
+                Soldier.update_soldier_location(consts.DOWN, matrix)
             
             if event.key == pygame.K_RIGHT:
-                print('RIGHT')
-                # Soldier.update_soldier_location(consts.RIGHT)
+                Soldier.update_soldier_location(consts.DOWN, matrix)
+
+            if event.key == pygame.K_ENTER:
+                print()
+                # call to show mine screen
+
         if event.type == pygame.QUIT:
             pygame.quit()
-            break
+            game_running = False
+        
 
 

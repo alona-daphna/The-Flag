@@ -13,7 +13,7 @@ def initialize_matrix():
         matrix.append(row_to_add)
 
     place_flag()
-    place_soldier()
+    place_soldier(matrix)
     place_bombs()
 
     return matrix
@@ -32,11 +32,12 @@ def place_flag():
             print(r,c)
             matrix[r][c] = consts.FLAG
 
-def place_soldier():
-    r_start, c_start = consts.SOLDIER_START_PLACE
+def place_soldier(matrix, location_start=consts.SOLDIER_START_PLACE):
+    print(location_start)
+    r_start, c_start = location_start
     for r in range(consts.SOLDIER_HEIGHT):
         for c in range(consts.SOLDIER_WIDTH):
-            matrix[r][c] = consts.SOLDIER
+            matrix[r_start+r][c_start+c] = consts.SOLDIER
 
 def place_bombs():
     for i in range(consts.BOMB_COUNT):
@@ -59,7 +60,7 @@ def get_bomb_locations():
         for c in range(consts.COLS):
             if matrix[r][c] == consts.BOMB:
                 indexes.append((r, c))
-                
+
     locations_by_first_index = []            
     for i in range(0, len(indexes), 3):
         locations_by_first_index.append(indexes[i])
@@ -70,12 +71,3 @@ def get_bomb_locations():
 def update_matrix():
     pass
 
-
-def is_touching_bomb():
-    pass
-
-def is_touching_flag():
-    pass
-
-def locate_object(obj):
-    pass
