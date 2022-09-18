@@ -27,9 +27,10 @@ def random_index():
 
 def place_flag():
     r_start, c_start = consts.FLAG_START_PLACE
-    for r in range(consts.ROWS-2, consts.ROWS - consts.FLAG_WIDTH - 2, -1):
+    for r in range(consts.ROWS-2, consts.ROWS - consts.FLAG_WIDTH - 1, -1):
         for c in range(consts.COLS -1, consts.COLS - consts.FLAG_HEIGHT - 2, -1):
-            matrix[r][c] == consts.FLAG
+            print(r,c)
+            matrix[r][c] = consts.FLAG
 
 def place_soldier():
     r_start, c_start = consts.SOLDIER_START_PLACE
