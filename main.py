@@ -21,21 +21,17 @@ while game_running:
     for event in events:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                Soldier.update_soldier_location(consts.UP, matrix)
-                print_matrix(matrix)
+                hit_object = Soldier.update_soldier_location(consts.UP, matrix)
 
             if event.key == pygame.K_DOWN:
-                Soldier.update_soldier_location(consts.DOWN, matrix)
-                print_matrix(matrix)
+                hit_object = Soldier.update_soldier_location(consts.DOWN, matrix)
 
             
             if event.key == pygame.K_LEFT:
-                Soldier.update_soldier_location(consts.LEFT, matrix)
-                print_matrix(matrix)
+                hit_object = Soldier.update_soldier_location(consts.LEFT, matrix)
             
             if event.key == pygame.K_RIGHT:
-                Soldier.update_soldier_location(consts.RIGHT, matrix)
-                print_matrix(matrix)
+                hit_object = Soldier.update_soldier_location(consts.RIGHT, matrix)
 
             if event.key == pygame.K_RETURN:
                 print()
@@ -45,7 +41,13 @@ while game_running:
             pygame.quit()
             game_running = False
 
-        print()
+        if len(hit_object) > 0:
+            if hit_object == consts.BOMB:
+                pass
+                # hit bomb
+            if hit_object == consts.FLAG:
+                pass
+                # win
         
 
 

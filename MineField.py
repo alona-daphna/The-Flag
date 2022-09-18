@@ -1,7 +1,6 @@
 import pygame
 import random
 import consts
-# import Screen
 
 matrix = []
 
@@ -78,6 +77,6 @@ def get_object_location(obj):
     for r in range(consts.ROWS):
         for c in range(consts.COLS):
             if matrix[r][c] == obj:
-                indexes.append(r, c)
+                indexes.append((r, c))
     return indexes
 

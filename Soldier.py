@@ -2,7 +2,9 @@ import pygame
 import consts
 import MineField
 
+# returns False if soldier did not touch any bomb
 def update_soldier_location(movement, matrix):
+    hit_object = ''
     matrix = MineField.matrix
     # location_top_left = get_location_body()[0]  # first index of soldier
     locations = MineField.get_object_location(consts.SOLDIER)
@@ -22,8 +24,14 @@ def update_soldier_location(movement, matrix):
     
     if is_not_out_of_range(new_top_left):
         MineField.remove_soldier(matrix)
+        if is_touching_bomb(new_top_left):
+            hit_object = consts.BOMB
+        if is_touching_flag():
+            hit_object = consts.FLAG
+
         MineField.place_soldier(matrix, new_top_left)
 
+    return hit_object
 
 
 # checks that the soldier is not out of game's bounds
@@ -38,17 +46,17 @@ def is_not_out_of_range(new_location):
     return True
     
 
+def is_touching_bomb(new_location):
+    new_r, new_c = new_location
+    locations = get_object_location(consts.BOMB)
 
-def is_touching_bomb():
-    pass
+    leg_row = new_r+consts.SOLDIER_HEIGHT-1
+    for col in range(consts.SOLDIER_WIDTH):
+        if matrix[new_r][new_c+col] == consts.BOMB:
+            return True
+    return False
+
 
 def is_touching_flag():
     pass
-
-
-# returns a tuple (row, col)
-def get_location_legs():
-    pass
-
-
 
