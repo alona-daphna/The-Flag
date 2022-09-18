@@ -54,11 +54,12 @@ def is_empty(r, c, length):
 
 # returns a list of tuples [(row, col)]
 def get_bomb_locations():
-    indexes = []
-    for r in range(consts.ROWS):
-        for c in range(consts.COLS):
-            if matrix[r][c] == consts.BOMB:
-                indexes.append((c * consts.HEIGHT_MULTIPLIER, r * consts.WIDTH_MULTIPLIER))
+    indexes = get_object_location(consts.BOMB)
+
+    for i in range(len(indexes)):
+        r, c = indexes[i]
+        indexes[i] = (c * consts.HEIGHT_MULTIPLIER, r * consts.WIDTH_MULTIPLIER)
+
 
     locations_by_first_index = []
     for i in range(0, len(indexes), 3):
@@ -72,4 +73,11 @@ def remove_soldier(matrix):
             if matrix[r][c] == consts.SOLDIER:
                 matrix[r][c] = consts.EMPTY
 
+def get_object_location(obj):
+    indexes = []
+    for r in range(consts.ROWS):
+        for c in range(consts.COLS):
+            if matrix[r][c] == obj:
+                indexes.append(r, c)
+    return indexes
 

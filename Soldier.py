@@ -5,7 +5,7 @@ import MineField
 def update_soldier_location(movement, matrix):
     matrix = MineField.matrix
     # location_top_left = get_location_body()[0]  # first index of soldier
-    locations = [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1), (3,0), (3,1)]
+    locations = MineField.get_object_location(consts.SOLDIER)
     location_top_left = locations[0]
 
     if movement == consts.UP:
@@ -50,8 +50,5 @@ def is_touching_flag():
 def get_location_legs():
     pass
 
-# returns a tuple (row, col)
-def get_location_body():
-    pass
 
 
