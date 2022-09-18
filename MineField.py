@@ -53,6 +53,19 @@ def is_empty(r, c, length):
     
     return True
 
+def get_bomb_locations():
+    indexes = []
+    for r in range(consts.ROWS):
+        for c in range(consts.COLS):
+            if matrix[r][c] == consts.BOMB:
+                indexes.append((r, c))
+                
+    locations_by_first_index = []            
+    for i in range(0, len(indexes), 3):
+        locations_by_first_index.append(indexes[i])
+    
+    return locations_by_first_index
+    
 
 def update_matrix():
     pass
