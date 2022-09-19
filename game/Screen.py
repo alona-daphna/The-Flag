@@ -11,6 +11,7 @@ screen = pygame.display.set_mode(
 def draw_game():
     coordinates = random_coordinates()
     draw_grass(coordinates)
+    draw_flag(consts.FLAG_PATH)
     create_player(MineField.get_player_location())
 
 
@@ -55,7 +56,15 @@ def draw_grass(grass_coordinates):
                                      (consts.GRASS_WIDTH, consts.GRASS_HEIGHT))
     draw_objects(grass_coordinates, myimage)
 
-def drae_flag()
+def draw_flag(image_path):
+    flag_image = pygame.image.load(image_path)
+    flag_image = pygame.transform.scale(flag_image, (consts.FLAG_WIDTH_PIXEL,
+                                                     consts.FLAG_HEIGHT_PIXEL))
+    x = consts.WINDOW_WIDTH - consts.FLAG_WIDTH_PIXEL
+    y = consts.WINDOW_HEIGHT - consts.FLAG_HEIGHT_PIXEL
+    screen.blit(flag_image, (x, y))
+
+
 def draw_objects(coordinates, image):
     for coordinate in coordinates:
         screen.blit(image, coordinate)
