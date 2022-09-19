@@ -14,7 +14,7 @@ def draw_game():
     create_player(MineField.get_player_location())
 
 
-def create_player(coordinates, img = "soldier.png"):
+def create_player(coordinates, img = "imgs/soldier.png"):
     y, x = coordinates
     x *= consts.WIDTH_MULTIPLIER
     y *= consts.WIDTH_MULTIPLIER
@@ -28,7 +28,7 @@ def create_player(coordinates, img = "soldier.png"):
 def present_bomb_screen():
     screen.fill(consts.BLACK)
     draw_grid()
-    create_player(MineField.get_player_location(), "soldier_night.png")
+    create_player(MineField.get_player_location(), "imgs/soldier_night.png")
     draw_bombs(MineField.get_bomb_locations())
     time.sleep(1)
 
@@ -41,7 +41,7 @@ def draw_grid():
 
 
 def draw_bombs(bomb_coordinates):
-    myimage = pygame.image.load("bomb.png")
+    myimage = pygame.image.load("imgs/bomb.png")
     myimage = pygame.transform.scale(myimage,
                                      (consts.BOMB_WIDTH_PIXEL,
                                       consts.BOMB_HEIGHT_PIXEL))
@@ -50,12 +50,11 @@ def draw_bombs(bomb_coordinates):
 
 def draw_grass(grass_coordinates):
     screen.fill(consts.BACKGROUND_COLOR)
-    myimage = pygame.image.load("grass.png")
+    myimage = pygame.image.load("imgs/grass.png")
     myimage = pygame.transform.scale(myimage,
                                      (consts.GRASS_WIDTH, consts.GRASS_HEIGHT))
     draw_objects(grass_coordinates, myimage)
 
-def drae_flag()
 def draw_objects(coordinates, image):
     for coordinate in coordinates:
         screen.blit(image, coordinate)
