@@ -15,10 +15,13 @@ def draw_game():
 
 
 def create_player(coordinates, img = "soldier.png"):
+    y, x = coordinates
+    x *= consts.WIDTH_MULTIPLIER
+    y *= consts.WIDTH_MULTIPLIER
     soldier_img = pygame.image.load(img)
     soldier_img = pygame.transform.scale(soldier_img, (consts.SOLDIER_WIDTH_PIXEL,
                                            consts.SOLDIER_HEIGHT_PIXEL))
-    screen.blit(soldier_img, coordinates)
+    screen.blit(soldier_img, (x,y))
     pygame.display.flip()
 
 
@@ -52,7 +55,7 @@ def draw_grass(grass_coordinates):
                                      (consts.GRASS_WIDTH, consts.GRASS_HEIGHT))
     draw_objects(grass_coordinates, myimage)
 
-
+def drae_flag()
 def draw_objects(coordinates, image):
     for coordinate in coordinates:
         screen.blit(image, coordinate)

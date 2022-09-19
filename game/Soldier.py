@@ -1,4 +1,6 @@
 import pygame
+
+import Screen
 import consts
 import MineField
 
@@ -24,13 +26,13 @@ def update_soldier_location(movement, matrix):
 
     if is_not_out_of_range(new_top_left):
         MineField.remove_soldier(matrix)
+
         if is_touching_bomb(new_top_left):
             hit_object = consts.BOMB
         if is_touching_flag():
             hit_object = consts.FLAG
-
         MineField.place_soldier(matrix, new_top_left)
-
+        Screen.create_player(new_top_left)
     return hit_object
 
 # checks that the soldier is not out of game's bounds

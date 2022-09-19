@@ -33,8 +33,8 @@ def main():
                                                                  matrix)
 
                 if event.key == pygame.K_RETURN:
-                    print()
-                    # call to show mine screen
+                    Screen.present_bomb_screen()
+                    Screen.draw_game()
 
             if event.type == pygame.QUIT:
                 pygame.quit()
