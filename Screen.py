@@ -6,23 +6,26 @@ import time
 
 screen = pygame.display.set_mode(
         (consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
-
+grass_coordinates = MineField.get_grass_locations()
 
 def draw_game():
-    coordinates = random_coordinates()
-    draw_grass(coordinates)
+    draw_grass()
     draw_flag(consts.FLAG_PATH)
     create_player(MineField.get_player_location())
 
 
-def create_player(coordinates, img = "soldier.png"):
+def create_player(coordinates, img="soldier.png"):
+    if (img == consts.SOLDIER_PATH):
+        draw_grass()
+        draw_flag(consts.FLAG_PATH)
     y, x = coordinates
     x *= consts.WIDTH_MULTIPLIER
     y *= consts.WIDTH_MULTIPLIER
     soldier_img = pygame.image.load(img)
-    soldier_img = pygame.transform.scale(soldier_img, (consts.SOLDIER_WIDTH_PIXEL,
-                                           consts.SOLDIER_HEIGHT_PIXEL))
-    screen.blit(soldier_img, (x,y))
+    soldier_img = pygame.transform.scale(soldier_img,
+                                         (consts.SOLDIER_WIDTH_PIXEL,
+                                          consts.SOLDIER_HEIGHT_PIXEL))
+    screen.blit(soldier_img, (x, y))
     pygame.display.flip()
 
 
@@ -49,12 +52,13 @@ def draw_bombs(bomb_coordinates):
     draw_objects(bomb_coordinates, myimage)
 
 
-def draw_grass(grass_coordinates):
+def draw_grass():
     screen.fill(consts.BACKGROUND_COLOR)
     myimage = pygame.image.load("grass.png")
     myimage = pygame.transform.scale(myimage,
                                      (consts.GRASS_WIDTH, consts.GRASS_HEIGHT))
     draw_objects(grass_coordinates, myimage)
+
 
 def draw_flag(image_path):
     flag_image = pygame.image.load(image_path)
@@ -79,14 +83,3 @@ def get_coordinates_bomb(matrix):
                 coordinates.append((row, col))
     return coordinates
 
-
-def random_coordinates():
-    index_list = []
-    while len(index_list) != consts.NUM_OF_OBJECTS:
-        random_x = random.randint(0, consts.WINDOW_WIDTH - consts.GRASS_WIDTH)
-        random_y = random.randint(0,
-                                  consts.WINDOW_HEIGHT - consts.GRASS_HEIGHT)
-        index_tuple = tuple((random_x, random_y))
-        if index_tuple not in index_list:
-            index_list.append(index_tuple)
-    return index_list

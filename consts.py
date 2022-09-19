@@ -35,3 +35,4 @@ LEFT = 'left'
 RIGHT = 'right'
 
 FLAG_PATH = "flag.png"
+SOLDIER_PATH = "soldier.png"

@@ -86,6 +86,17 @@ def get_bomb_locations():
 
     return locations_by_first_index
 
+def get_grass_locations():
+    index_list = []
+    while len(index_list) != consts.NUM_OF_OBJECTS:
+        random_x = random.randint(0, consts.WINDOW_WIDTH - consts.GRASS_WIDTH)
+        random_y = random.randint(0,
+                                  consts.WINDOW_HEIGHT - consts.GRASS_HEIGHT)
+        index_tuple = tuple((random_x, random_y))
+        if index_tuple not in index_list:
+            index_list.append(index_tuple)
+    return index_list
+
 def remove_soldier(matrix):
     for r in range(consts.ROWS):
         for c in range(consts.COLS):
