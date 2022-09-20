@@ -2,9 +2,8 @@ import consts
 import random
 
 matrix = []
-
-
-def initialize_matrix():
+def initialize_matrix(soldier_coordinate, bombs_location = []):
+    matrix.clear()
     for r in range(consts.ROWS):
         row_to_add = []
         for c in range(consts.COLS):
@@ -12,8 +11,8 @@ def initialize_matrix():
         matrix.append(row_to_add)
 
     place_flag()
-    place_soldier(matrix)
-    place_bombs()
+    place_soldier(matrix, soldier_coordinate)
+    place_bombs(bombs_location)
 
     return matrix
 
@@ -39,14 +38,18 @@ def place_soldier(matrix, location_start=consts.SOLDIER_START_PLACE):
             matrix[r_start+r][c_start+c] = consts.SOLDIER
 
 
-def place_bombs():
-    count = 0
-    while count != 20:
-        row, col = random_index()
-        if is_empty(row, col, consts.BOMB_WIDTH):
-            for j in range(consts.BOMB_WIDTH):
-                matrix[row][col + j] = consts.BOMB
-            count += 1
+def place_bombs(bombs_coordinates):
+    if len(bombs_coordinates) > 0:
+        for coordinate in bombs_coordinates:
+            matrix[coordinate[0]][coordinate[1]] = consts.BOMB
+    else:
+        count = 0
+        while count != 20:
+            row, col = random_index()
+            if is_empty(row, col, consts.BOMB_WIDTH):
+                for j in range(consts.BOMB_WIDTH):
+                    matrix[row][col + j] = consts.BOMB
+                count += 1
 
 
 def is_empty(r, c, length):
@@ -63,12 +66,6 @@ def get_object_location(obj):
             if matrix[r][c] == obj:
                 indexes.append((r, c))
     return indexes
-
-
-def get_player_location():
-    for row in range(consts.ROWS):
-        for col in range(consts.COLS):
-            return ((col, row))
 
 
 # returns a list of tuples [(row, col)]
@@ -102,3 +99,4 @@ def remove_soldier(matrix):
         for c in range(consts.COLS):
             if matrix[r][c] == consts.SOLDIER:
                 matrix[r][c] = consts.EMPTY
+
